@@ -8,6 +8,12 @@
 # 使用npm运行需要配置淘宝代理
 npm config set registry https://registry.npmmirror.com
 
+# 通过 github 拉取（最新）
+git clone https://github.com/Eaaon/vue3-shop-h5.git
+
+# 进入项目目录
+cd vue3-shop-h5
+
 # 安装依赖
 yarn
 
@@ -27,7 +33,7 @@ yarn dev
 - **ESlint**：代码校验
 - **Prettier**：代码格式化
 - **Axios**：发送网络请求（已封装好）
-- **UnoCSS**：具有高性能且极具灵活性的即时原子化 CSS 引擎[样式搜索链接](https://unocss.dev/interactive/)
+- **UnoCSS**：具有高性能且极具灵活性的即时原子化 CSS 引擎[样式搜索链接](https://unocss.dev/interactive/)可参考[tailwindcss](https://tailwindcss.com/docs/margin)
 - **mockjs**: 本地请求
 - **mitt**: 组件通讯
 
@@ -69,11 +75,6 @@ yarn dev
 ```
 
 ## 使用工具
-- **husky**: Git hooks 工具
-> 对git执行的一些命令，通过对应的hooks钩子触发，执行自定义的脚本程序
-
-- **lint-staged**：检测文件插件
-> 只检测git add . 中暂存区的文件，对过滤出的文件执行脚本
 
 - **eslint**：插件化JavaScript代码检测工具
 > Js编码规范，检测并提示错误或警告信息
@@ -84,16 +85,11 @@ yarn dev
 - **editorconfig**：文件代码规范
 > 保持多人开发一致编码样式
 
-- **commitlint**：代码提交检测
-> 检测git commit 内容是否符合定义的规范
-
-- **commitizen**：代码提交内容标准化
-> 提示定义输入标准的git commit 内容
-
-
 ## vscode工具
 - **TypeScript Vue Plugin (Volar)**：TypeScript Vue3开发必备
 - **Vue Language Features (Volar)**: Vue3开发必备
+- **Prettier - Code formatter**: 代码格式化
+- **UnoCSS**：原子化CSS
 
 ## 移动端适配和样式设置
 ### 1、安装依赖
@@ -149,3 +145,7 @@ Done. Now run:
   npm install
   npm run dev
 ```
+
+## ⭐ 作者
+
+如果觉得项目不错，或者有帮助到你，希望你可以去 Github 或者 Gitee 帮我点个 ⭐ Star，这将是对我极大的鼓励与支持。
