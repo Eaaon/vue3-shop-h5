@@ -97,26 +97,17 @@ yarn dev
 
 ## 移动端适配和样式设置
 ### 1、安装依赖
-
 ```
 npm install -D postcss-px-to-viewport-8-plugin
 ```
-### 2、配置设计尺寸
-在 postcss.config.cjs 配置设置尺寸 375设计稿
-> 忽略vant文件，exclude: [/node_modules\/vant/i],
-> 鉴于postcss-px-to-viewpor忽略样式不生效，改成postcss-px-to-viewport-8-plugin， 
-你可以使用特殊注释忽略单行转换：
-/* px-to-viewport-ignore-next */ — 在另一行上，阻止下一行上的转换 
-/* px-to-viewport-ignore */ — 在右边的属性之后，防止在同一行上转换 
 
-750的设计稿，px按照实际尺寸写就可以了
+### 2、配置设计尺寸
+在 postcss.config.cjs 配置设置尺寸 375设计稿,px按照实际尺寸写就可以了
 
 ### 3、UnoCSS安装和配置
 ```
 npm install -D unocss
-```
 在uno.config.ts 配置
-```
 // main.ts
 import 'uno.css'
 ```
@@ -124,8 +115,6 @@ import 'uno.css'
 ### 4、将unocss的rem转换成px
 ```
 yarn add -D @unocss/preset-rem-to-px
-```
-```
 // uno.config.ts
 import { defineConfig } from 'unocss'
 import presetRemToPx from '@unocss/preset-rem-to-px'
