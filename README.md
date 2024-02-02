@@ -33,39 +33,39 @@ yarn dev
 
 ## 目录结构
 
-├─dist               # 打包dist
-├─mock               # mock服务
-├─node_modules       # 模块和插件
-├─public             # 静态资源
-├─src                # 主目录
-│ ├─api              # 接口文件
-│ ├─assets           # 资源文件
-│ │  ├──icons        # icon sprite 图标文件夹
-│ │  ├──images       # 项目存放图片的文件夹
-│ │  └──svgs         # 项目存放svg图片的文件夹
-│ ├─components       # 通用业务组件（全局可用）
-│ ├─enums            # 枚举
-│ ├─router           # 路由配置
-│ ├─store            # 状态管理中心
-│ ├─styles           # 全局样式
-│ ├─types            # Typescript 类型
-│ ├─utils            # 工具库
-│ ├─views            # 所有业务页面
-│ ├─App.vue          # 视图入口
-│ └─main.ts          # 入口文件
-├─.editorconfig      # 文件代码规范
-├─.env.development   # 开发环境
-├─.env.production    # 生产环境
-├─.eslintrc.js       # eslint配置
-├─.gitignore         # git提交忽略文件配置
-├─.prettierrc.js     # prettier配置
-├─index.html         # html入口
-├─package.json       # 对项目或者模块包的描述
-├─postcss.config.cjs # postcss移动端适配配置       
-├─README.md          # 项目手册
-├─tsconfig.json      # ts编译配置
-├─unocss.config.ts   # unocss编译配置
-└─vite.config.ts     # vite配置
+├─ dist               # 打包dist
+├─ mock               # mock服务
+├─ node_modules       # 模块和插件
+├─ public             # 静态资源
+├─ src                # 主目录
+│  ├─ api             # 接口文件
+│  ├─ assets          # 资源文件
+│  │  ├── icons       # icon sprite 图标文件夹
+│  │  ├── images      # 项目存放图片的文件夹
+│  │  └── svgs        # 项目存放svg图片的文件夹
+│  ├─ components      # 通用业务组件（全局可用）
+│  ├─ enums           # 枚举
+│  ├─ router          # 路由配置
+│  ├─ store           # 状态管理中心
+│  ├─ styles          # 全局样式
+│  ├─ types           # Typescript 类型
+│  ├─ utils           # 工具库
+│  ├─ views           # 所有业务页面
+│  ├─ App.vue         # 视图入口
+│  └─ main.ts         # 入口文件
+├─ .editorconfig      # 文件代码规范
+├─ .env.development   # 开发环境
+├─ .env.production    # 生产环境
+├─ .eslintrc.js       # eslint配置
+├─ .gitignore         # git提交忽略文件配置
+├─ .prettierrc.js     # prettier配置
+├─ index.html         # html入口
+├─ package.json       # 对项目或者模块包的描述
+├─ postcss.config.cjs # postcss移动端适配配置       
+├─ README.md          # 项目手册
+├─ tsconfig.json      # ts编译配置
+├─ unocss.config.ts   # unocss编译配置
+└─ vite.config.ts     # vite配置
 
 ## 使用工具
 - **husky**: Git hooks 工具
