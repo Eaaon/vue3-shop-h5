@@ -1,0 +1,38 @@
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import UnoCSS from 'unocss/vite'
+
+// https://vitejs.dev/config/
+export default defineConfig(({ command, mode, ssrBuild }) => {
+  return {
+    base: process.env.NODE_ENV === "production" ?
+      "/vue3-shop-h5" : "/",
+    plugins: [
+      vue(),
+      UnoCSS(),
+    ],
+    resolve: {
+      alias: {
+        '@': new URL('./src', import.meta.url).pathname,
+      }
+    },
+    server: {
+      host: true,
+      // port: 8991,
+      proxy: {
+        '/app': {
+          target: 'https://app-cn.smileteeth.cn',
+          changeOrigin: true,
+          ws: true,
+          rewrite: (path) => path.replace(/^\/dev/, ''),
+        },
+        '/dev': {
+          target: 'https://dev.smileteeth.cn',
+          changeOrigin: true,
+          ws: true,
+          rewrite: (path) => path.replace(/^\/dev/, ''),
+        }
+      },
+    },
+  }
+})
