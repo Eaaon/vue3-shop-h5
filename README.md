@@ -32,7 +32,7 @@ yarn dev
 - **mitt**: 组件通讯
 
 ## 目录结构
-
+```
 ├─ dist               # 打包dist
 ├─ mock               # mock服务
 ├─ node_modules       # 模块和插件
@@ -66,6 +66,7 @@ yarn dev
 ├─ tsconfig.json      # ts编译配置
 ├─ unocss.config.ts   # unocss编译配置
 └─ vite.config.ts     # vite配置
+```
 
 ## 使用工具
 - **husky**: Git hooks 工具
