@@ -123,6 +123,11 @@ export default defineConfig({
 })
 ```
 
+## 💎 第三方组件
+### 1、轮播（swiper）
+### 2、滚动（@better-scroll/core）
+### 3、瀑布流（masonry-layout、vue-masonry)
+
 ## 🎈 如需自己使用Vite创建项目
 ```
  # 使用 NPM:

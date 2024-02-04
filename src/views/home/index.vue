@@ -2,6 +2,7 @@
 import { ref, toRefs, reactive, onMounted, nextTick, onBeforeUnmount } from 'vue'
 import BScroll from '@better-scroll/core'
 import { showToast } from 'vant';
+import addIcon from '@/assets/icons/cart_add_icon.png'
 
 onMounted(() => {
   nextTick(() => {
@@ -19,8 +20,18 @@ let bs = ref(null)
 const state = reactive({
   keywords: '',
   bannerList: [
-    'https://m11.360buyimg.com/babel/jfs/t1/238683/14/2822/304456/65a676d5F03d67e6b/33214ed93cd50467.png.webp',
-    'https://m.360buyimg.com/babel/jfs/t1/119823/7/42345/73537/65a7ca46Ffed71f8c/0730abe67949b5cc.png!q70.dpg'
+    {
+      id: 200401,
+      linkUrl: "https://baidu.com",
+      picUrl: 'https://m11.360buyimg.com/babel/jfs/t1/238683/14/2822/304456/65a676d5F03d67e6b/33214ed93cd50467.png.webp',
+      title: "首页Banner1"
+    },
+    {
+      id: 200402,
+      linkUrl: "https://gitee.com/joeshu/v-shop",
+      picUrl: 'https://m.360buyimg.com/babel/jfs/t1/119823/7/42345/73537/65a7ca46Ffed71f8c/0730abe67949b5cc.png!q70.dpg',
+      title: "首页Banner2"
+    }
   ],
   boxList: [
     {
@@ -111,7 +122,91 @@ const state = reactive({
         }
       ]
     }
-  ]
+  ],
+  productList: [{
+    "styleType": 1001,
+    "skuId": "100083907951",
+    "name": "诺梵金松露巧克力年货礼盒新年大礼包500g",
+    "image": "https://m.360buyimg.com/n1/jfs/t1/135882/35/41627/238563/65b8c051F13ddb240/29f92e76f3b86d19.jpg",
+    "pPrice": "129",
+    "shopId": 1000082422,
+  },
+  {
+    "skuId": "100001492717",
+    "name": "旺旺 仙贝 零食膨化食品饼干糕点  家庭装 400g",
+    "shortName": "旺旺 仙贝 400g",
+    "image": "https://m.360buyimg.com/n1/jfs/t1/138541/8/8121/83207/5f5b0c69Eda7d4a39/67c54c91a1c26563.jpg",
+    "pPrice": "23.5",
+    "shopId": 1000079565,
+    "sellPoints": [
+      "家庭装",
+      "色泽金黄",
+      "膨化零食"
+    ],
+  },
+  {
+    "skuId": "100084667520",
+    "name": "茶颜悦色休闲膨化零食大礼包 薯条海苔办公室下午茶歇年货共10件",
+    "shortName": "茶颜悦色休闲零食大礼包10件",
+    "image": "https://m.360buyimg.com/n1/jfs/t1/242670/30/4280/162902/65b9971eF7fa85329/c1711c6e6065821a.png",
+    "pPrice": "69.9",
+    "shopId": 1000422408,
+  },
+  {
+    "skuId": "1119955",
+    "name": "立白全自动超浓缩大桶装洗衣粉1.8kg低泡易漂不伤手 工厂酒店清洁",
+    "shortName": "立白超浓缩洗衣粉1.8kg桶装",
+    "image": "https://m.360buyimg.com/n1/jfs/t1/164992/14/26061/103544/6162a91cEd27be522/4f23b7400a915eac.jpg",
+    "pPrice": "37.9",
+    "shopId": 1000001759,
+  },
+  {
+    "skuId": "4947426",
+    "name": "安佳(Anchor)新西兰进口 动物黄油淡味无盐454g 烘焙原料煎牛排曲奇",
+    "shortName": "安佳 动物黄油原味无盐 454g/块",
+    "image": "https://m.360buyimg.com/n1/jfs/t1/199781/1/13561/71508/616c9484E651be1c0/bccf7b85a23e8c34.jpg",
+    "pPrice": "43.9",
+    "shopId": 1000090721,
+  },
+  {
+    "skuId": "100068434620",
+    "name": "Classic Teddy精典泰迪童装儿童长袖T恤男童圆领上衣中大童时尚春装 杏黄 130 ",
+    "image": "https://m.360buyimg.com/n1/jfs/t1/235045/18/13079/77389/65bdd110Faa503acc/eda729c9095a0379.jpg",
+    "pPrice": "59.9",
+    "shopId": 1000101604,
+  },
+  {
+    "skuId": "100056320290",
+    "name": "巴拉巴拉儿童秋衣上衣春秋保暖套装女童中大童甜美风206322169009",
+    "shortName": "巴拉巴拉内衣彼得潘小仙女印花",
+    "image": "https://m.360buyimg.com/n1/jfs/t1/111067/2/35597/17786/64a3cafaFd3a52451/419a4e353da78626.jpg",
+    "pPrice": "169",
+    "shopId": 1000007826,
+  },
+  {
+    "skuId": "5151404",
+    "name": "十月稻田 23年新米 五常稻香米 五常大米 5kg 东北大米",
+    "shortName": "十月稻田 五常大米 5kg",
+    "image": "https://m.360buyimg.com/n1/jfs/t1/239157/19/3782/235335/65bcd63fF3b201952/3efc11629208e6ee.jpg",
+    "pPrice": "76",
+    "shopId": 1000014142,
+  },
+  {
+    "skuId": "100078093208",
+    "name": "碧芭宝贝大鱼海棠pro拉拉裤XL码试用装4片(12-17kg)尿不湿体验装小包装",
+    "shortName": "大鱼海棠pro拉拉裤XL码试用装4片",
+    "image": "https://m.360buyimg.com/n1/jfs/t1/108828/40/48821/74089/65bb3ae1Fb12f0dd1/03dc26057d839361.jpg",
+    "pPrice": "19.9",
+    "shopId": 1000121162,
+  },
+  {
+    "skuId": "100002193311",
+    "name": "高洁丝（Kotex）臻选奢爽纯棉组合8包64片（240*26+150*20+280*12+420*6）卫生巾",
+    "shortName": "高洁丝臻选卫生巾8包64片",
+    "image": "https://m.360buyimg.com/n1/jfs/t1/241601/12/3904/573577/65ae3d5fF4db08269/8c4395506101fea4.png",
+    "pPrice": "39.9",
+    "shopId": 1000002396,
+  }]
 })
 
 const onSwipeChange = (index: number) => {
@@ -122,7 +217,7 @@ const onBox = (index: number) => {
   showToast('当前 Box 索引：' + index);
 }
 
-const { keywords, bannerList, boxList } = toRefs(state)
+const { keywords, bannerList, boxList, productList } = toRefs(state)
 
 </script>
 
@@ -132,24 +227,43 @@ const { keywords, bannerList, boxList } = toRefs(state)
   </van-sticky>
   <van-swipe :autoplay="3000" indicator-color="#fff" class="swiper-wrapper keep-px-swiper w-full" lazy-render
     @change="onSwipeChange">
-    <van-swipe-item v-for="(image, index) in bannerList" :key="index">
-      <van-image width="100%" height="100%" fit="cover" :src="image" />
+    <van-swipe-item v-for="item in bannerList" :key="item.id">
+      <van-image width="100%" height="100%" fit="cover" :src="item.picUrl" :alt="item.title" />
     </van-swipe-item>
   </van-swipe>
-  <div class="scroll-wrapper overflow-hidden whitespace-nowrap" ref="bscroll">
+  <div class="scroll-wrapper overflow-hidden whitespace-nowrap bg-white pb-2" ref="bscroll">
     <div class="inline-block">
-      <div class="inline-block keep-px-width w-375" v-for="(boxs, index) in boxList" :key="index">
-        <div class="flex flex-wrap w-full">
+      <div class="inline-block" v-for="(boxs, index) in boxList" :key="index">
+        <div class="flex flex-wrap w-375">
           <div class="text-center mt-2 w-1/5" v-for="(box, j) in boxs.children" :key="j" @click="onBox(j)">
             <div>
               <van-image width="70%" height="100%" fit="cover" :src="box.icon" />
             </div>
-            <div class="text-xs">{{ box.text }}</div>
+            <div class="text-xs break-words">{{ box.text }}</div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <vant-list>
+    <div class="list m-2" v-masonry transition-duration="0.3s" item-selector=".item" gutter="5" :cols="2">
+      <div v-masonry-tile class="item bg-white mb-2.5 rounded-lg" :class="`demo-${i % 2}`"
+        v-for="(item, i) in productList" :key="item.skuId">
+        <van-image class="img-item" width="100%" height="100%" fit="cover" :src="item.image"></van-image>
+        <main class="px-2">
+          <div class="text-sm leading-4 break-words text-slate-800">{{ item.name }}</div>
+          <div class="flex flex-wrap pt-2" v-if="item.sellPoints">
+            <span class="text-gray-500 text-xs mr-1" v-for="(label, j) in item.sellPoints" :key="j">{{ label }}</span>
+          </div>
+          <div class="py-2 flex justify-between">
+            <div class="price"><span class="text-xs">￥</span>{{ item.pPrice }}</div>
+            <van-image width="24px" height="24px" fit="cover" :src="addIcon"/>
+          </div>
+        </main>
+
+      </div>
+    </div>
+  </vant-list>
 </template>
 
 <style lang="scss" scoped>
@@ -159,5 +273,24 @@ const { keywords, bannerList, boxList } = toRefs(state)
 
 .swiper-wrapper {
   height: 175px;
+}
+
+.list {
+  width: 359px;
+}
+
+.item {
+  width: 177px;
+}
+
+.price{
+  color: #ff3710;
+}
+</style>
+
+<style>
+.img-item img {
+  border-start-start-radius: 0.5rem;
+  border-start-end-radius: 0.5rem;
 }
 </style>

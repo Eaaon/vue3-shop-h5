@@ -1,12 +1,11 @@
 .keep-px-app{
-  max-width: 480px;
+  // max-width: 480px;
   min-height: 100vh;
-  margin-left: auto;
-  margin-right: auto;
+  background-color: #f00;
 }
 
-.keep-px-width{
-  max-width: 480px;
+#app {
+  width: 100%;
 }
 
 .w-375{

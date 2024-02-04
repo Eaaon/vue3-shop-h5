@@ -36,3 +36,13 @@ export function priceIntegerFormat(min: number, max: number) {
 
   return decimalFormat(min);
 }
+
+export function getInt(num: number){
+  const arr = num.toString().split(".");
+  return arr[0]
+}
+
+export function getDecimal(num: number){
+  const arr = num.toString().split(".");
+  return arr[1]
+}

@@ -11,6 +11,7 @@ import 'uno.css'
 import '@/styles/index.scss'
 
 import { ConfigProvider } from 'vant'
+import { VueMasonryPlugin } from 'vue-masonry'
 
 const app = createApp(App)
 
@@ -19,4 +20,5 @@ setupStore(app)
 app.use(router)
 app.use(Vant)
 app.use(ConfigProvider)
+app.use(VueMasonryPlugin)
 app.mount('#app')

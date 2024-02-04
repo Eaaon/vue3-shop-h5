@@ -23,6 +23,7 @@
     "video.js": "^8.5.2",
     "videojs-contrib-hls": "^5.15.0",
     "vue": "^3.3.4",
+    "vue-masonry": "^0.16.0",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
@@ -35,6 +36,8 @@
     "@vue/eslint-config-prettier": "^8.0.0",
     "eslint": "^8.50.0",
     "eslint-plugin-vue": "^9.17.0",
+    "postcss": "^8.4.33",
+    "postcss-mobile-forever": "^4.1.1",
     "postcss-px-to-viewport-8-plugin": "^1.2.2",
     "prettier": "^3.0.3",
     "sass": "^1.68.0",
