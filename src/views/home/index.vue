@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, toRefs, reactive, onMounted, nextTick, onBeforeUnmount } from 'vue'
+import { ref, toRefs, reactive, onMounted, nextTick, onBeforeUnmount, getCurrentInstance, ComponentInternalInstance } from 'vue'
 import BScroll from '@better-scroll/core'
 import { showToast } from 'vant';
 import addIcon from '@/assets/icons/cart_add_icon.png'
@@ -8,6 +8,11 @@ onMounted(() => {
   nextTick(() => {
     bs = new BScroll(bscroll.value, { scrollX: true })
   })
+  window.onresize = () =>{
+    console.log('222')
+    const update = getCurrentInstance() as ComponentInternalInstance | null
+    update!.proxy!.$forceUpdate()
+  }
 })
 
 onBeforeUnmount(() => {
@@ -231,7 +236,7 @@ const { keywords, bannerList, boxList, productList } = toRefs(state)
       <van-image width="100%" height="100%" fit="cover" :src="item.picUrl" :alt="item.title" />
     </van-swipe-item>
   </van-swipe>
-  <div class="scroll-wrapper overflow-hidden whitespace-nowrap bg-white pb-2" ref="bscroll">
+  <div class="scroll-wrapper overflow-hidden whitespace-nowrap pb-2" ref="bscroll">
     <div class="inline-block">
       <div class="inline-block" v-for="(boxs, index) in boxList" :key="index">
         <div class="flex flex-wrap w-375">
