@@ -37,11 +37,11 @@ export function priceIntegerFormat(min: number, max: number) {
   return decimalFormat(min);
 }
 
-export function getInt(n: number| string){
-  return Math.trunc(n)
+export function getInt(n: number | string){
+  return Math.trunc(Number(n))
 }
 
-export function getDecimal(n: number){
+export function getDecimal(n: number | string){
   const s = Number(n).toFixed(2)
   const arr = s.toString().split(".");
   return arr[1]

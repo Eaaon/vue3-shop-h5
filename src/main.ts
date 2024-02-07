@@ -9,6 +9,7 @@ import Vant from 'vant'
 import 'vant/lib/index.css'
 import 'uno.css'
 import '@/styles/index.scss'
+import { List } from 'vant';
 
 import { ConfigProvider } from 'vant'
 import { VueMasonryPlugin } from 'vue-masonry'
@@ -21,4 +22,5 @@ app.use(router)
 app.use(Vant)
 app.use(ConfigProvider)
 app.use(VueMasonryPlugin)
+app.use(List)
 app.mount('#app')

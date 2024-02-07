@@ -1,24 +1,22 @@
 <script setup lang="ts">
-import { ref, toRefs, reactive, onMounted, nextTick, onBeforeUnmount, getCurrentInstance, ComponentInternalInstance } from 'vue'
+import { ref, toRefs, reactive, onMounted, nextTick, onBeforeUnmount } from 'vue'
 import BScroll from '@better-scroll/core'
 import { showToast } from 'vant';
 import addIcon from '@/assets/icons/cart_add_icon.png'
+import { getInt, getDecimal } from '@/utils/format'
+import { useRouter } from 'vue-router';
 
 onMounted(() => {
   nextTick(() => {
     bs = new BScroll(bscroll.value, { scrollX: true })
   })
-  window.onresize = () =>{
-    console.log('222')
-    const update = getCurrentInstance() as ComponentInternalInstance | null
-    update!.proxy!.$forceUpdate()
-  }
 })
 
 onBeforeUnmount(() => {
   bs.destroy()
 })
 
+const router = useRouter();
 const bscroll = ref()
 let bs = ref(null)
 
@@ -211,7 +209,32 @@ const state = reactive({
     "image": "https://m.360buyimg.com/n1/jfs/t1/241601/12/3904/573577/65ae3d5fF4db08269/8c4395506101fea4.png",
     "pPrice": "39.9",
     "shopId": 1000002396,
-  }]
+  }],
+  loading: false,
+  finished: false,
+  list: [
+    {
+      "styleType": 1001,
+      "skuId": "100083907951",
+      "name": "诺梵金松露巧克力年货礼盒新年大礼包500g",
+      "image": "https://m.360buyimg.com/n1/jfs/t1/135882/35/41627/238563/65b8c051F13ddb240/29f92e76f3b86d19.jpg",
+      "pPrice": "129",
+      "shopId": 1000082422,
+    },
+    {
+      "skuId": "100001492717",
+      "name": "旺旺 仙贝 零食膨化食品饼干糕点  家庭装 400g",
+      "shortName": "旺旺 仙贝 400g",
+      "image": "https://m.360buyimg.com/n1/jfs/t1/138541/8/8121/83207/5f5b0c69Eda7d4a39/67c54c91a1c26563.jpg",
+      "pPrice": "23.5",
+      "shopId": 1000079565,
+      "sellPoints": [
+        "家庭装",
+        "色泽金黄",
+        "膨化零食"
+      ],
+    },
+  ]
 })
 
 const onSwipeChange = (index: number) => {
@@ -222,7 +245,25 @@ const onBox = (index: number) => {
   showToast('当前 Box 索引：' + index);
 }
 
-const { keywords, bannerList, boxList, productList } = toRefs(state)
+const onLoad = () => {
+  console.log('ss')
+  // state.productList = state.productList.concat(state.list)
+  setTimeout(() => {
+    state.productList = [...state.productList, ...state.productList]
+    // 加载状态结束
+    state.loading = true;
+    // 数据全部加载完成
+    if (state.productList.length >= 20) {
+      state.finished = true;
+    }
+  }, 600);
+}
+
+const onGoods = (id: string) => {
+  router.push({ path: '/goods/detail', query: { id } });
+}
+
+const { keywords, bannerList, boxList, productList, loading, finished, list } = toRefs(state)
 
 </script>
 
@@ -236,7 +277,7 @@ const { keywords, bannerList, boxList, productList } = toRefs(state)
       <van-image width="100%" height="100%" fit="cover" :src="item.picUrl" :alt="item.title" />
     </van-swipe-item>
   </van-swipe>
-  <div class="scroll-wrapper overflow-hidden whitespace-nowrap pb-2" ref="bscroll">
+  <div class="scroll-wrapper overflow-hidden whitespace-nowrap pb-2 bg-white" ref="bscroll">
     <div class="inline-block">
       <div class="inline-block" v-for="(boxs, index) in boxList" :key="index">
         <div class="flex flex-wrap w-375">
@@ -250,10 +291,10 @@ const { keywords, bannerList, boxList, productList } = toRefs(state)
       </div>
     </div>
   </div>
-  <vant-list>
-    <div class="list m-2" v-masonry transition-duration="0.3s" item-selector=".item" gutter="5" :cols="2">
-      <div v-masonry-tile class="item bg-white mb-2.5 rounded-lg" :class="`demo-${i % 2}`"
-        v-for="(item, i) in productList" :key="item.skuId">
+  <van-list v-model:loading="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
+    <div class="list m-2" v-masonry transition-duration="0.3s" item-selector=".item">
+      <div v-masonry-tile class="item bg-white mb-2.5 rounded-lg" v-for="item in productList" :key="item.skuId"
+        @click="onGoods(item.skuId)">
         <van-image class="img-item" width="100%" height="100%" fit="cover" :src="item.image"></van-image>
         <main class="px-2">
           <div class="text-sm leading-4 break-words text-slate-800">{{ item.name }}</div>
@@ -261,14 +302,17 @@ const { keywords, bannerList, boxList, productList } = toRefs(state)
             <span class="text-gray-500 text-xs mr-1" v-for="(label, j) in item.sellPoints" :key="j">{{ label }}</span>
           </div>
           <div class="py-2 flex justify-between">
-            <div class="price"><span class="text-xs">￥</span>{{ item.pPrice }}</div>
-            <van-image width="24px" height="24px" fit="cover" :src="addIcon"/>
+            <div class="price">
+              <span class="text-xs">￥</span>
+              <span>{{ getInt(item.pPrice) }}.</span>
+              <span class="text-xs">{{ getDecimal(item.pPrice) }}</span>
+            </div>
+            <van-image width="24px" height="24px" fit="cover" :src="addIcon" />
           </div>
         </main>
-
       </div>
     </div>
-  </vant-list>
+  </van-list>
 </template>
 
 <style lang="scss" scoped>
@@ -281,14 +325,16 @@ const { keywords, bannerList, boxList, productList } = toRefs(state)
 }
 
 .list {
-  width: 359px;
+  // width: 359px;
+  margin-left: 3px;
 }
 
 .item {
   width: 177px;
+  margin-left: 5px;
 }
 
-.price{
+.price {
   color: #ff3710;
 }
 </style>

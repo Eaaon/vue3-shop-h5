@@ -1,5 +1,6 @@
 import { RouterView, createRouter, createWebHistory } from 'vue-router'
 import userRouter from './user'
+import goodsRouter from './goods'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,6 +17,25 @@ const router = createRouter({
         title: '首页',
         showWindowBar: true,
       },
+    },
+    {
+      path: '/other',
+      name: 'other',
+      component: () => import('@/views/home/other.vue'),
+      meta: {
+        title: '首页',
+        showWindowBar: true,
+      },
+    },
+    {
+      path: '/goods',
+      name: 'goods',
+      component: RouterView,
+      meta: {
+        title: '商品',
+        showWindowBar: true,
+      },
+      children: goodsRouter
     },
     {
       path: '/user',
