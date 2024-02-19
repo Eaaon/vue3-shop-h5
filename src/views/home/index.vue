@@ -5,6 +5,7 @@ import { showToast } from 'vant';
 import addIcon from '@/assets/icons/cart_add_icon.png'
 import { getInt, getDecimal } from '@/utils/format'
 import { useRouter } from 'vue-router';
+import Tabbar from '@/components/Tabbar/index.vue'
 
 onMounted(() => {
   nextTick(() => {
@@ -313,6 +314,7 @@ const { keywords, bannerList, boxList, productList, loading, finished, list } = 
       </div>
     </div>
   </van-list>
+  <Tabbar style="height: 50px;"></Tabbar>
 </template>
 
 <style lang="scss" scoped>

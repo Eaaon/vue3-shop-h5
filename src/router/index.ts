@@ -19,6 +19,32 @@ const router = createRouter({
       },
     },
     {
+      path: '/category',
+      name: 'Category',
+      component: () => import('@/views/category/index.vue'),
+      meta: {
+        title: '分类',
+        showWindowBar: true,
+      },
+    },
+    {
+      path: '/cart',
+      name: 'Cart',
+      component: () => import('@/views/cart/index.vue'),
+      meta: {
+        title: '购物车',
+      },
+    },
+    {
+      path: '/mine',
+      name: 'Mine',
+      component: () => import('@/views/mine/index.vue'),
+      meta: {
+        title: '我的',
+        showWindowBar: true,
+      },
+    },
+    {
       path: '/other',
       name: 'other',
       component: () => import('@/views/home/other.vue'),
@@ -41,6 +67,14 @@ const router = createRouter({
       path: '/user',
       component: RouterView,
       children: userRouter
+    },
+    {
+      path: '/video',
+      name: 'video',
+      component: () => import('@/views/video/index.vue'),
+      meta: {
+        title: '视频',
+      }
     },
     {
       path: '/401',
