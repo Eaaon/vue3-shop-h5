@@ -18,7 +18,7 @@ export default defineComponent({
       active.value = route.path;
     });
 
-    function onTabClicked(index) {
+    const onTabClicked = (index) => {
       const { pagePath } = unref(tabList)[index];
 
       router.replace({
