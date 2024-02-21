@@ -37,7 +37,7 @@ export default defineComponent({
 
 <template>
   <div class="tabbar-wrap">
-    <van-tabbar v-model="active" class="tabbar" fixed>
+    <van-tabbar v-model="active" class="tabbar">
       <van-tabbar-item v-for="(item, index) in tabList" :key="index" :name="item.pagePath" @click="onTabClicked(index)">
         <template #icon>
           <van-icon :name="item.icon" />
@@ -54,6 +54,8 @@ export default defineComponent({
 }
 
 .tabbar {
+  box-shadow: 0 0 10px 0 hsla(0, 6%, 58%, .6);
+
   :deep(.van-tabbar-item--active) {
     // color: var(--color-primary);
 

@@ -60,7 +60,7 @@ const state = reactive({
       'https://img30.360buyimg.com/sku/jfs/t1/141458/25/17350/222079/5fcdbeadE004d1351/8234799f4c517da1.jpg'
     ]
   },
-  cartCount: 0
+  cartCount: ''
 })
 
 // Sku
@@ -76,7 +76,11 @@ const onConcatService = () => {
   showToast('未开放：客服');
 }
 
-const onSkuShow = (type: string) =>{
+const onCart = () => {
+  router.push({ path: '/cart', query: { url: '' } });
+}
+
+const onSkuShow = (type: string) => {
   skuNextActionType.value = type;
   skuShow.value = true;
 }
@@ -170,7 +174,7 @@ const { picList, star, tabInfo, cartCount } = toRefs(state)
           </tbody>
         </table>
       </van-tab>
-      <van-tab title="售后保障" class="px-4 pb-10 text-666">
+      <van-tab title="售后保障" class="px-4 pb-10 text-gray">
         <van-divider :style="{ color: '#666', borderColor: '#ddd', lineHeight: '1' }">服务承诺</van-divider>
         <div class="text-xs">
           商城向您保证所售商品均为正品行货，自营商品开具机打发票或电子发票。凭质保证书及商城发票，可享受全国联保服务（奢侈品、钟表除外；奢侈品、钟表由联系保修，享受法定三包售后服务），与您亲临商场选购的商品享受相同的质量保证。商城还为您提供具有竞争力的商品价格和运费政策，请您放心购买！
@@ -205,13 +209,12 @@ const { picList, star, tabInfo, cartCount } = toRefs(state)
   <van-action-bar>
     <van-action-bar-icon icon="thumb-circle-o" text="首页" to="/home" replace />
     <van-action-bar-icon icon="chat-o" text="客服" @click="onConcatService" />
-    <van-action-bar-icon icon="cart-o" text="购物车" :badge="cartCount" />
-    <van-action-bar-button type="warning" text="加入购物车"  @click="onSkuShow('addCart')" />
+    <van-action-bar-icon icon="cart-o" text="购物车" :badge="cartCount" @click="onCart" />
+    <van-action-bar-button type="warning" text="加入购物车" @click="onSkuShow('addCart')" />
     <van-action-bar-button type="danger" text="立即购买" @click="onSkuShow" />
   </van-action-bar>
 
   <Sku v-model:show="skuShow"></Sku>
-
 </template>
 
 <style lang="scss" scoped>
