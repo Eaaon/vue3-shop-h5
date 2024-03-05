@@ -2,7 +2,7 @@
 import { ref, toRefs, reactive, onMounted, nextTick, onBeforeUnmount } from 'vue'
 import BScroll from '@better-scroll/core'
 import { showToast } from 'vant';
-import addIcon from '@/assets/icons/cart_add_icon.png'
+import addIcon from '@/assets/icons/cart_add.png'
 import { getInt, getDecimal } from '@/utils/format'
 import { useRouter } from 'vue-router';
 import Tabbar from '@/components/Tabbar/index.vue'

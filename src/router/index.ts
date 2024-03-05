@@ -45,6 +45,24 @@ const router = createRouter({
       },
     },
     {
+      path: '/order/list',
+      name: 'OrderList',
+      component: () => import('@/views/order/list.vue'),
+      meta: {
+        title: '订单列表',
+        needLogin: true,
+      },
+    },
+    {
+      path: '/order/detail',
+      name: 'OrderDetail',
+      component: () => import('@/views/order/detail.vue'),
+      meta: {
+        title: '订单详情',
+        needLogin: true,
+      },
+    },
+    {
       path: '/other',
       name: 'other',
       component: () => import('@/views/home/other.vue'),

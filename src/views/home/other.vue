@@ -6,7 +6,6 @@ const loading = ref(false);
 const finished = ref(false);
 
 const onLoad = () => {
-  console.log('ss')
   for (let i = 0; i < 20; i++) {
     list.value.push(list.value.length + 1);
   }
