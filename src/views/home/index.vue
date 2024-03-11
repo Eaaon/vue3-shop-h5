@@ -247,7 +247,6 @@ const onBox = (index: number) => {
 }
 
 const onLoad = () => {
-  console.log('ss')
   // state.productList = state.productList.concat(state.list)
   setTimeout(() => {
     state.productList = [...state.productList, ...state.productList]

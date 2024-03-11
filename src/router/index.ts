@@ -63,6 +63,15 @@ const router = createRouter({
       },
     },
     {
+      path: '/order/submit',
+      name: 'OrderSubmit',
+      component: () => import('@/views/order/submit.vue'),
+      meta: {
+        title: '提交订单',
+        needLogin: true,
+      },
+    },
+    {
       path: '/other',
       name: 'other',
       component: () => import('@/views/home/other.vue'),

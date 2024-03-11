@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { reactive, ref, toRefs } from 'vue';
+import { useRouter } from 'vue-router';
 import Tabbar from '@/components/Tabbar/index.vue'
 import { getInt, getDecimal } from '@/utils/format'
+
+const router = useRouter();
 
 const state = reactive({
   selectedAll: false,
@@ -46,7 +49,7 @@ const state = reactive({
 const { selectedAll, list } = toRefs(state)
 
 const onSubmit = () => {
-
+  router.push({ path: '/order/submit', query: { id: '1' } });
 }
 
 </script>

@@ -1,5 +1,6 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
   name: 'Sku',
@@ -11,6 +12,7 @@ export default defineComponent({
     }
   },
   setup(props, context) {
+    const router = useRouter();
     const count = ref(1)
     const state = reactive({
       tagList: [
@@ -36,6 +38,7 @@ export default defineComponent({
     }
     const onSubmit = () => {
       onClose()
+      router.push({ path: '/order/submit', query: { id: '1' } });
     }
     return {
       count,
@@ -69,7 +72,8 @@ export default defineComponent({
     <main class="sku-main overflow-y-auto">
       <div class="px-4 text-sm font-bold h-10 leading-10">产品</div>
       <div class="px-2 flex flex-wrap items-center px-1.5 overflow-hidden sku_choose">
-        <span class="item rounded-full h-7 leading-7 ml-3 mb-2 px-4 overflow-hidden" :class="{ 'active': state.active == i }" v-for="(item, i) of state.tagList" :key="item.id"
+        <span class="item rounded-full h-7 leading-7 ml-3 mb-2 px-4 overflow-hidden"
+          :class="{ 'active': state.active == i }" v-for="(item, i) of state.tagList" :key="item.id"
           @click="onTag(i)">{{ item.name }}</span>
       </div>
       <div class="px-5 py-4 flex justify-between">
@@ -95,11 +99,11 @@ export default defineComponent({
   max-width: 270px;
   min-width: 20px;
   font-size: 11px;
-  
+
 }
 
 .sku_choose .item.active {
-  background: #fcedeb;                                            
+  background: #fcedeb;
   border: 1px solid #f2270c;
   color: #f2270c;
   font-weight: 700;
