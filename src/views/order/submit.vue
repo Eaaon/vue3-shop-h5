@@ -2,7 +2,8 @@
 import { computed, onMounted, ref, reactive, toRefs } from 'vue'
 import { decimalFormat, mobileShow } from '@/utils/format'
 import { areaList } from '@vant/area-data';
-import OrderGoods from './components/OrderGoods.vue'
+import GoodsOrder from './components/GoodsOrder.vue';
+import GoodsPay from './components/GoodsPay.vue';
 
 const addressPopupShow = ref(false)
 const chosenAddressId = ref('1')
@@ -74,10 +75,78 @@ const state = reactive({
       tel: '1320000000',
       address: '浙江省杭州市滨江区江南大道 15 号',
     },
+  ],
+  goodsList: [
+    {
+      id: '11',
+      title: '美的（Midea）电动牙刷头 成人精准清洁 净白呵护软毛刷头更换 杜邦软毛刷头三八妇女节礼物实用 适配S1P灰电动牙刷 3支',
+      subTitle: '适配S1P灰电动牙刷 3支',
+      url: 'https://img10.360buyimg.com/mobilecms/s200x200_jfs/t1/130854/26/41556/81817/65d2f0a1F59fde0f9/8c8c951525557136.jpg',
+      price: '39',
+      count: 1,
+      weight: '0.2244kg',
+      express: '快递运输',
+      time: '预计3月13日24:00前发货'
+    },
+    // {
+    //   id: '12',
+    //   title: '美的（Midea）电动牙刷头 成人精准清洁 净白呵护软毛刷头更换 杜邦软毛刷头三八妇女节礼物实用 适配S1P灰电动牙刷 3支',
+    //   subTitle: '适配S1P灰电动牙刷 3支',
+    //   url: 'https://img10.360buyimg.com/mobilecms/s200x200_jfs/t1/130854/26/41556/81817/65d2f0a1F59fde0f9/8c8c951525557136.jpg',
+    //   price: '39',
+    //   count: 1,
+    //   weight: '0.2244kg',
+    //   express: '快递运输',
+    //   time: '预计3月13日24:00前发货'
+    // },
+    // {
+    //   id: '14',
+    //   title: '美的（Midea）电动牙刷头 成人精准清洁 净白呵护软毛刷头更换 杜邦软毛刷头三八妇女节礼物实用 适配S1P灰电动牙刷 3支',
+    //   subTitle: '适配S1P灰电动牙刷 3支',
+    //   url: 'https://img10.360buyimg.com/mobilecms/s200x200_jfs/t1/130854/26/41556/81817/65d2f0a1F59fde0f9/8c8c951525557136.jpg',
+    //   price: '39',
+    //   count: 1,
+    //   weight: '0.2244kg',
+    //   express: '快递运输',
+    //   time: '预计3月13日24:00前发货'
+    // },
+    // {
+    //   id: '15',
+    //   title: '美的（Midea）电动牙刷头 成人精准清洁 净白呵护软毛刷头更换 杜邦软毛刷头三八妇女节礼物实用 适配S1P灰电动牙刷 3支',
+    //   subTitle: '适配S1P灰电动牙刷 3支',
+    //   url: 'https://img10.360buyimg.com/mobilecms/s200x200_jfs/t1/130854/26/41556/81817/65d2f0a1F59fde0f9/8c8c951525557136.jpg',
+    //   price: '39',
+    //   count: 1,
+    //   weight: '0.2244kg',
+    //   express: '快递运输',
+    //   time: '预计3月13日24:00前发货'
+    // },
+    // {
+    //   id: '14',
+    //   title: '美的（Midea）电动牙刷头 成人精准清洁 净白呵护软毛刷头更换 杜邦软毛刷头三八妇女节礼物实用 适配S1P灰电动牙刷 3支',
+    //   subTitle: '适配S1P灰电动牙刷 3支',
+    //   url: 'https://img10.360buyimg.com/mobilecms/s200x200_jfs/t1/130854/26/41556/81817/65d2f0a1F59fde0f9/8c8c951525557136.jpg',
+    //   price: '39',
+    //   count: 1,
+    //   weight: '0.2244kg',
+    //   express: '快递运输',
+    //   time: '预计3月13日24:00前发货'
+    // },
+    // {
+    //   id: '15',
+    //   title: '美的（Midea）电动牙刷头 成人精准清洁 净白呵护软毛刷头更换 杜邦软毛刷头三八妇女节礼物实用 适配S1P灰电动牙刷 3支',
+    //   subTitle: '适配S1P灰电动牙刷 3支',
+    //   url: 'https://img10.360buyimg.com/mobilecms/s200x200_jfs/t1/130854/26/41556/81817/65d2f0a1F59fde0f9/8c8c951525557136.jpg',
+    //   price: '39',
+    //   count: 1,
+    //   weight: '0.2244kg',
+    //   express: '快递运输',
+    //   time: '预计3月13日24:00前发货'
+    // }
   ]
 })
 
-const { addressInfo, list, disabledList } = toRefs(state)
+const { addressInfo, list, disabledList, goodsList } = toRefs(state)
 
 const formatAreaStr = (provinceStr: string, cityStr: string, countyStr: string) => {
   let str = provinceStr;
@@ -158,9 +227,13 @@ const onAddressClickLeft = () => {
     <section class="mt-3 mx-2 bg-white p-4 rounded-lg">
       <div class="flex items-center">
         <van-icon class="section-header-icon" name="shop-o" />
-        <div class="ml-3 text-xs">商品列表</div>
+        <div class="ml-3 text-sm">商品列表</div>
       </div>
-      <order-goods></order-goods>
+      <goods-order :list="goodsList"></goods-order>
+    </section>
+    
+    <section class="mt-3 mx-2 bg-white p-4 rounded-lg">
+      <goods-pay :item="goodsList"></goods-pay>
     </section>
   </div>
 </template>

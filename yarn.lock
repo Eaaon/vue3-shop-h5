@@ -317,7 +317,7 @@
 
 "@better-scroll/core@^2.5.1":
   version "2.5.1"
-  resolved "https://registry.npmmirror.com/@better-scroll/core/-/core-2.5.1.tgz"
+  resolved "https://registry.npmmirror.com/@better-scroll/core/-/core-2.5.1.tgz#de53f089a2f53f51e58e5042556fe0d3e1655aa9"
   integrity sha512-koKOuYA55dQ04FJRIVUpMGDr1hbCfWmfX0MGp1hKagkQSWSRpwblqACiwtggVauoj9aaJRJZ9hDsTM4weaavlg==
   dependencies:
     "@better-scroll/shared-utils" "^2.5.1"

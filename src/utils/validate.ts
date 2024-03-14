@@ -68,6 +68,23 @@ export function isUserName(val: string) {
 }
 
 /**
+ * 校验15位、18位身份证号码
+ */
+export function isIDCard(val: string) {
+  const reg =
+    /(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}$)/;
+  return reg.test(val);
+}
+
+/**
+ *校验16位、19位银行卡号
+ */
+export function isBankCard(val: string) {
+  const reg = /^([1-9]{1})(\d{15}|\d{18})$/;
+  return reg.test(val);
+}
+
+/**
  * 账户密码
  * @param {string} val
  * @description 8-25位大小写字母、数字或数字加字母的形式
