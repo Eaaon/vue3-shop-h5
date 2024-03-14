@@ -88,17 +88,17 @@ const state = reactive({
       express: '快递运输',
       time: '预计3月13日24:00前发货'
     },
-    // {
-    //   id: '12',
-    //   title: '美的（Midea）电动牙刷头 成人精准清洁 净白呵护软毛刷头更换 杜邦软毛刷头三八妇女节礼物实用 适配S1P灰电动牙刷 3支',
-    //   subTitle: '适配S1P灰电动牙刷 3支',
-    //   url: 'https://img10.360buyimg.com/mobilecms/s200x200_jfs/t1/130854/26/41556/81817/65d2f0a1F59fde0f9/8c8c951525557136.jpg',
-    //   price: '39',
-    //   count: 1,
-    //   weight: '0.2244kg',
-    //   express: '快递运输',
-    //   time: '预计3月13日24:00前发货'
-    // },
+    {
+      id: '12',
+      title: '美的（Midea）电动牙刷头 成人精准清洁 净白呵护软毛刷头更换 杜邦软毛刷头三八妇女节礼物实用 适配S1P灰电动牙刷 3支',
+      subTitle: '适配S1P灰电动牙刷 3支',
+      url: 'https://img10.360buyimg.com/mobilecms/s200x200_jfs/t1/130854/26/41556/81817/65d2f0a1F59fde0f9/8c8c951525557136.jpg',
+      price: '39',
+      count: 1,
+      weight: '0.2244kg',
+      express: '快递运输',
+      time: '预计3月13日24:00前发货'
+    },
     // {
     //   id: '14',
     //   title: '美的（Midea）电动牙刷头 成人精准清洁 净白呵护软毛刷头更换 杜邦软毛刷头三八妇女节礼物实用 适配S1P灰电动牙刷 3支',
@@ -195,45 +195,61 @@ const onAddressClickLeft = () => {
 </script>
 
 <template>
-  <div class="container">
-    <header v-if="addressInfo.linkMan" class="flex flex-col justify-center relative p-4 bg-white address"
-      @click="onPopupShow">
-      <div class="flex items-center">
-        <van-tag type="danger" class="mr-2" v-if="addressInfo.isDefault">默认</van-tag>
-        <van-tag type="primary" class="mr-2" v-if="addressInfo.label">{{ addressInfo.label }}</van-tag>
-        <div class="text-xs text-gray-600 truncate flex-1"> {{
-      formatAreaStr(addressInfo.provinceStr, addressInfo.cityStr, addressInfo.areaStr) }}</div>
-      </div>
-      <div class="text-base font-bold truncate w-11/12 mt-1">{{ addressInfo.address }}</div>
-      <div class="text-sm truncate w-11/12 mt-1">{{ addressInfo.linkMan }} {{ mobileShow(addressInfo.mobile) }}</div>
-      <van-icon class="address-arrow" name="arrow" />
-    </header>
-    <van-contact-card v-else type="add" add-text="新增收货地址" @click="onPopupShow" />
+  <div class="container flex flex-col h-screen overflow-hidden">
+    <section class="flex-1 overflow-y-auto pb-4">
+      <header v-if="addressInfo.linkMan" class="flex flex-col justify-center relative p-4 bg-white address"
+        @click="onPopupShow">
+        <div class="flex items-center">
+          <van-tag type="danger" class="mr-2" v-if="addressInfo.isDefault">默认</van-tag>
+          <van-tag type="primary" class="mr-2" v-if="addressInfo.label">{{ addressInfo.label }}</van-tag>
+          <div class="text-xs text-gray-600 truncate flex-1"> {{
+            formatAreaStr(addressInfo.provinceStr, addressInfo.cityStr, addressInfo.areaStr) }}</div>
+        </div>
+        <div class="text-base font-bold truncate w-11/12 mt-1">{{ addressInfo.address }}</div>
+        <div class="text-sm truncate w-11/12 mt-1">{{ addressInfo.linkMan }} {{ mobileShow(addressInfo.mobile) }}</div>
+        <van-icon class="address-arrow" name="arrow" />
+      </header>
+      <van-contact-card v-else type="add" add-text="新增收货地址" @click="onPopupShow" />
 
-    <van-popup v-model:show="addressPopupShow" position="right" :style="{ width: '100%', height: '100%' }">
-      <van-nav-bar title="收货地址" left-text="返回" left-arrow @click-left="onClickLeft" />
-      <van-address-list v-model="chosenAddressId" :list="list" :disabled-list="disabledList" disabled-text="以下地址超出配送范围"
-        default-tag-text="默认" @add="onAdd" @edit="onEdit" @select="onSelect" style="height:calc(100% - 46px);"
-        class="overflow-y-auto" />
-    </van-popup>
+      <van-popup v-model:show="addressPopupShow" position="right" :style="{ width: '100%', height: '100%' }">
+        <van-nav-bar title="收货地址" left-text="返回" left-arrow @click-left="onClickLeft" />
+        <van-address-list v-model="chosenAddressId" :list="list" :disabled-list="disabledList" disabled-text="以下地址超出配送范围"
+          default-tag-text="默认" @add="onAdd" @edit="onEdit" @select="onSelect" style="height:calc(100% - 46px);"
+          class="overflow-y-auto" />
+      </van-popup>
 
-    <van-popup v-model:show="editAddressPopupShow" position="right" :style="{ width: '100%', height: '100%' }">
-      <van-nav-bar title="编辑收货地址" left-text="返回" left-arrow @click-left="onAddressClickLeft" />
-      <van-address-edit :area-list="areaList" show-delete show-set-default show-search-result
-        :search-result="searchResult" :area-columns-placeholder="['请选择', '请选择', '请选择']" @save="onSave"
-        @delete="onDelete" @change-detail="onChangeDetail" />
-    </van-popup>
+      <van-popup v-model:show="editAddressPopupShow" position="right" :style="{ width: '100%', height: '100%' }">
+        <van-nav-bar title="编辑收货地址" left-text="返回" left-arrow @click-left="onAddressClickLeft" />
+        <van-address-edit :area-list="areaList" show-delete show-set-default show-search-result
+          :search-result="searchResult" :area-columns-placeholder="['请选择', '请选择', '请选择']" @save="onSave"
+          @delete="onDelete" @change-detail="onChangeDetail" />
+      </van-popup>
 
-    <section class="mt-3 mx-2 bg-white p-4 rounded-lg">
-      <div class="flex items-center">
-        <van-icon class="section-header-icon" name="shop-o" />
-        <div class="ml-3 text-sm">商品列表</div>
-      </div>
-      <goods-order :list="goodsList"></goods-order>
+      <section class="mt-3 mx-2 bg-white p-4 rounded-lg">
+        <div class="flex items-center">
+          <van-icon class="section-header-icon" name="shop-o" />
+          <div class="ml-3 text-sm">商品列表</div>
+        </div>
+        <goods-order :list="goodsList"></goods-order>
+      </section>
+
+      <section class="mt-3 mx-2 bg-white p-4 rounded-lg">
+        <goods-pay :item="goodsList"></goods-pay>
+      </section>
     </section>
-    
-    <section class="mt-3 mx-2 bg-white p-4 rounded-lg">
-      <goods-pay :item="goodsList"></goods-pay>
+
+
+    <section class="bg-white px-4 py-2">
+      <div class="flex justify-between items-center">
+        <div class="flex-1 red-pay">
+          <span class="text-sm">￥</span>
+          <span class="text-2xl">144</span>
+          <span class="text-sm">.00</span>
+        </div>
+        <div>
+          <van-button type="danger" round >在线支付</van-button>
+        </div>
+      </div>
     </section>
   </div>
 </template>
