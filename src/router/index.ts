@@ -1,5 +1,5 @@
 import { RouterView, createRouter, createWebHistory } from 'vue-router'
-import userRouter from './user'
+import mineRouter from './mine'
 import goodsRouter from './goods'
 
 const router = createRouter({
@@ -93,7 +93,7 @@ const router = createRouter({
     {
       path: '/user',
       component: RouterView,
-      children: userRouter
+      children: mineRouter
     },
     {
       path: '/video',
