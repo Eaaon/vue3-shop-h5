@@ -91,7 +91,7 @@ const router = createRouter({
       children: goodsRouter
     },
     {
-      path: '/user',
+      path: '/my',
       component: RouterView,
       children: mineRouter
     },

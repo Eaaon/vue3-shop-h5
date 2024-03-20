@@ -88,12 +88,12 @@ const orderList = ref<Recordable[]>([
 
 // 常用功能
 const toolList = ref<Recordable[]>([
-  { icon: icon_like, title: '我的收藏', path: '/like' },
-  { icon: icon_coupon, title: '优惠券', path: '/coupon' },
-  { icon: icon_location, title: '收货地址', path: '/location' },
-  { icon: icon_service, title: '联系客服', path: '/service' },
-  { icon: icon_feedback, title: '意见反馈', path: '/feedback' },
-  { icon: icon_setting, title: '设置', path: '/setting' },
+  { icon: icon_like, title: '我的收藏', path: '/my/like' },
+  { icon: icon_coupon, title: '优惠券', path: '/my/coupon' },
+  { icon: icon_location, title: '收货地址', path: '/my/location' },
+  { icon: icon_service, title: '联系客服', path: '/my/service' },
+  { icon: icon_feedback, title: '意见反馈', path: '/my/feedback' },
+  { icon: icon_setting, title: '设置', path: '/my/setting' },
 ]);
 
 const { userInfo } = toRefs(state)

@@ -9,15 +9,6 @@ const mineRouter = [
     }
   },
   {
-    path: "setting",
-    name: "setting",
-    component: () =>
-      import("@/views/setting/index.vue"),
-    meta: {
-      title: "设置"
-    }
-  },
-  {
     path: 'like',
     name: 'like',
     component: () => import('@/views/like/index.vue'),
@@ -32,6 +23,39 @@ const mineRouter = [
     meta: {
       title: '优惠券',
     },
+  },
+  {
+    path: 'location',
+    name: 'location',
+    component: () => import('@/views/location/index.vue'),
+    meta: {
+      title: '收货地址',
+    },
+  },
+  {
+    path: 'service',
+    name: 'service',
+    component: () => import('@/views/location/index.vue'),
+    meta: {
+      title: '联系客服',
+    },
+  },
+  {
+    path: 'feedback',
+    name: 'feedback',
+    component: () => import('@/views/feedback/index.vue'),
+    meta: {
+      title: '意见反馈',
+    },
+  },
+  {
+    path: "setting",
+    name: "setting",
+    component: () =>
+      import("@/views/setting/index.vue"),
+    meta: {
+      title: "设置"
+    }
   },
 ];
 
