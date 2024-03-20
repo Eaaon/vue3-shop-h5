@@ -1,5 +1,5 @@
 import { RouterView, createRouter, createWebHistory } from 'vue-router'
-import mineRouter from './mine'
+import mineRouter from './my'
 import goodsRouter from './goods'
 
 const router = createRouter({

@@ -30,12 +30,12 @@ const countList = ref<Recordable[]>([
   {
     value: '1',
     label: '积分',
-    path: '/order/list?status=0',
+    path: '/my/score',
   },
   {
     value: '2',
     label: '优惠券',
-    path: '/order/list?status=2',
+    path: '/my/coupon',
   },
   {
     value: '12',

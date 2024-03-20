@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import CouponCard from './components/CouponCard.vue'
 
 let active = ref(0)
+let isEdit = ref(false)
 let list = ref<Recordable[]>([
   {
     name: '待使用',
@@ -28,7 +29,8 @@ let normalCoupons = ref<Recordable[]>([
     name: '优惠券名称',
     expiredTime: '1天08时36分后过期',
     useDescription: '仅可购买京东健康部分商品',
-    couponNo: 'x321314832190'
+    couponNo: 'x321314832190',
+    checked: false
   },
   {
     id: '002',
@@ -40,7 +42,8 @@ let normalCoupons = ref<Recordable[]>([
     name: '优惠券名称',
     expiredTime: '2024.03.19-2024.03.26',
     useDescription: '仅可购买医药部分商品',
-    couponNo: '32131484430'
+    couponNo: '32131484430',
+    checked: false
   }
 ])
 
@@ -55,7 +58,8 @@ let usedCoupons = ref<Recordable[]>([
     name: '优惠券名称',
     expiredTime: '1天08时36分后过期',
     useDescription: '仅可购买京东健康部分商品',
-    couponNo: 'x321314832190'
+    couponNo: 'x321314832190',
+    checked: false
   },
   {
     id: '002',
@@ -67,7 +71,8 @@ let usedCoupons = ref<Recordable[]>([
     name: '优惠券名称',
     expiredTime: '2024.03.19-2024.03.26',
     useDescription: '仅可购买医药部分商品',
-    couponNo: '32131484430'
+    couponNo: '32131484430',
+    checked: false
   }
 ])
 
@@ -82,7 +87,8 @@ let expiredCoupons = ref<Recordable[]>([
     name: '优惠券名称',
     expiredTime: '1天08时36分后过期',
     useDescription: '仅可购买京东健康部分商品',
-    couponNo: 'x321314832190'
+    couponNo: 'x321314832190',
+    checked: false
   },
   {
     id: '002',
@@ -94,10 +100,10 @@ let expiredCoupons = ref<Recordable[]>([
     name: '优惠券名称',
     expiredTime: '2024.03.19-2024.03.26',
     useDescription: '仅可购买医药部分商品',
-    couponNo: '32131484430'
+    couponNo: '32131484430',
+    checked: false
   }
 ])
-const chosenCoupon = ref(-1);
 coupons = normalCoupons
 
 const onTab = (index: number) => {
@@ -116,14 +122,17 @@ const onDelete = (id: string) => {
       {{ item.name }}
     </div>
     <div class="tab-active-bar" :class="'moved' + active"></div>
-    <div class="w-16 text-center">管理</div>
+    <!-- <div class="w-16 text-center" @click="isEdit = !isEdit">{{ isEdit ? '完成' : '管理' }}</div> -->
   </header>
   <main class="mt-3 coupon-list">
-    <div v-for="(coupon, i) of coupons" :key="coupon.id">
-      <van-swipe-cell>
+    <div v-for="coupon of coupons" :key="coupon.id">
+      <van-swipe-cell :stop-propagation="true">
+        <!-- <template #left>
+          <van-checkbox v-model="coupon.checked" class="check-box"></van-checkbox>
+        </template> -->
         <coupon-card :item="coupon"></coupon-card>
         <template #right>
-          <van-button square text="删除" type="danger" class="delete-button" @click="onDelete(coupon.id)" />
+          <van-button text="删除" type="danger" class="delete-button" @click="onDelete(coupon.id)" />
         </template>
       </van-swipe-cell>
     </div>
@@ -140,35 +149,43 @@ const onDelete = (id: string) => {
   height: 2px;
   position: absolute;
   bottom: 0;
-  left: 23px;
+  left: 16px;
   background-color: #e93b3d;
 
   &.moved0 {
-    transform: translateX(23);
+    transform: translateX(16px);
     transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
       -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 
   &.moved1 {
-    transform: translateX(102px);
+    transform: translateX(141px);
     transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
       -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 
   &.moved2 {
-    transform: translateX(206px);
+    transform: translateX(266px);
     transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
       -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 }
 
-.coupon-list {
-  .van-swipe-cell__right {
-    .van-button {
-      height: inherit;
-      margin-right: 12px;
-      border-radius: 4px;
-    }
-  }
+// .coupon-list {
+//   .van-swipe-cell__right {
+//     .van-button {
+//       // height: inherit;
+//       margin-right: 12px;
+//       border-radius: 4px;
+//     }
+//   }
+// }
+.check-box{
+  height: 100%;
+  margin-left: 12px;
+}
+.delete-button{
+  height: 100%;
+  margin-right: 12px;
 }
 </style>

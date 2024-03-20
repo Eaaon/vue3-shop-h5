@@ -9,11 +9,11 @@ const mineRouter = [
     }
   },
   {
-    path: 'like',
-    name: 'like',
-    component: () => import('@/views/like/index.vue'),
+    path: 'score',
+    name: 'score',
+    component: () => import('@/views/score/index.vue'),
     meta: {
-      title: '我的收藏',
+      title: '积分',
     },
   },
   {
@@ -22,6 +22,14 @@ const mineRouter = [
     component: () => import('@/views/coupon/index.vue'),
     meta: {
       title: '优惠券',
+    },
+  },
+  {
+    path: 'like',
+    name: 'like',
+    component: () => import('@/views/like/index.vue'),
+    meta: {
+      title: '我的收藏',
     },
   },
   {
