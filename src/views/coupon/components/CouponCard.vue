@@ -13,7 +13,7 @@ let flag = ref(false)
 
 <template>
   <div class="container">
-    <div class="card rounded bg-white relative mx-3 mb-3" :class="{ 'gray': item.available }">
+    <div class="card rounded bg-white relative mx-3 " :class="{ 'gray': item.available }">
       <div class="right-tag" :class="{ 'tag-used': item.available == 1, 'tag-expired': item.available == 2 }"></div>
       <div class="flex">
         <div class="card-price flex flex-col justify-center items-center"
@@ -26,7 +26,7 @@ let flag = ref(false)
         </div>
         <div class="flex-1 overflow-hidden pt-4 text-xs pr-2 z-10">
           <div class="h-10">
-            <span class="coupon-tag" :class="{ 'gray': item.available }">{{ item.tag }}</span>
+            <span class="coupon-tag inline-block h-3 leading-3 text-xxs text-white indent-1.5" :class="{ 'gray': item.available }">{{ item.tag }}</span>
             <span class="text-gray ml-1 leading-relaxed">{{ item.description }}</span>
           </div>
           <div class="flex items-end justify-between py-2 h-6">
@@ -55,8 +55,7 @@ let flag = ref(false)
 </template>
 
 <style lang="scss" scoped>
-$greenColor: #53c7ca;
-$grayColor: #999999;
+@import '@/styles/color.scss';
 
 .card {
   border-top: 4px solid $greenColor;
@@ -89,17 +88,11 @@ $grayColor: #999999;
   }
 
   .coupon-tag {
-    display: inline-block;
     border-color: $greenColor;
     background-color: $greenColor;
-    height: 12px;
-    line-height: 12px;
-    font-size: 10px;
-    color: #fff;
-    text-indent: 6px;
     padding: 1px 5px;
     border-radius: 0 2px 2px 0;
-    background-size: 6px 14.2px;
+    background-size: 6px 14px;
     background-repeat: no-repeat;
     background-image: url('@/assets/images/tag_coupon.png');
 

@@ -4,6 +4,9 @@ import CouponCard from './components/CouponCard.vue'
 
 let active = ref(0)
 let isEdit = ref(false)
+let isCheckAll = ref(false)
+let checkedResult = ref([])
+
 let list = ref<Recordable[]>([
   {
     name: '待使用',
@@ -114,6 +117,28 @@ const onTab = (index: number) => {
 const onDelete = (id: string) => {
   coupons.value = coupons.value.filter(item => item.id !== id)
 }
+
+const checkAllChange = (val: boolean) => {
+  if (isCheckAll.value) {
+    checkedResult = coupons.value.map(item => item.id)
+  } else {
+    checkedResult = []
+  }
+}
+
+const checkedResultChange = (result: string[]) => {
+  if (result.length == coupons.value.length) {
+    isCheckAll.value = true
+  } else {
+    isCheckAll.value = false
+  }
+  checkedResult = result
+}
+
+const deleteCoupon = () => {
+
+}
+
 </script>
 
 <template>
@@ -122,21 +147,34 @@ const onDelete = (id: string) => {
       {{ item.name }}
     </div>
     <div class="tab-active-bar" :class="'moved' + active"></div>
-    <!-- <div class="w-16 text-center" @click="isEdit = !isEdit">{{ isEdit ? '完成' : '管理' }}</div> -->
+    <div class="w-16 text-center" @click="isEdit = !isEdit">{{ isEdit ? '完成' : '管理' }}</div>
   </header>
   <main class="mt-3 coupon-list">
-    <div v-for="coupon of coupons" :key="coupon.id">
-      <van-swipe-cell :stop-propagation="true">
-        <!-- <template #left>
-          <van-checkbox v-model="coupon.checked" class="check-box"></van-checkbox>
-        </template> -->
-        <coupon-card :item="coupon"></coupon-card>
+    <van-checkbox-group @change="checkedResultChange" v-model="checkedResult">
+      <van-swipe-cell class="mb-3" v-for="coupon of coupons" :key="coupon.id">
+        <div class="flex items-center">
+          <div class="ml-3" v-show="isEdit">
+            <van-checkbox :name="coupon.id"></van-checkbox>
+          </div>
+          <coupon-card :item="coupon"></coupon-card>
+        </div>
         <template #right>
-          <van-button text="删除" type="danger" class="delete-button" @click="onDelete(coupon.id)" />
+          <van-button text="删除" type="danger" class="delete-btn" @click="onDelete(coupon.id)" />
         </template>
       </van-swipe-cell>
-    </div>
+    </van-checkbox-group>
   </main>
+  <footer class="fixed bottom-0 flex justify-between items-center w-375 bg-white py-2" v-show="isEdit">
+    <div class="pl-3">
+      <van-checkbox v-model="isCheckAll" @click="checkAllChange">全选</van-checkbox>
+    </div>
+    <div class="pr-3 flex items-center">
+      <span class="px-3" @click="isEdit = !isEdit">取消</span>
+      <van-button :disabled="!checkedResult.length" type="danger" class="all-delete-btn"
+        @click="deleteCoupon">批量删除</van-button>
+    </div>
+  </footer>
+
 </template>
 
 <style lang="scss" scoped>
@@ -171,21 +209,14 @@ const onDelete = (id: string) => {
   }
 }
 
-// .coupon-list {
-//   .van-swipe-cell__right {
-//     .van-button {
-//       // height: inherit;
-//       margin-right: 12px;
-//       border-radius: 4px;
-//     }
-//   }
-// }
-.check-box{
-  height: 100%;
-  margin-left: 12px;
-}
-.delete-button{
+.delete-btn {
   height: 100%;
   margin-right: 12px;
+}
+
+.all-delete-btn .van-button {
+  height: 30px;
+  line-height: 30px;
+  border-radius: 20px;
 }
 </style>
