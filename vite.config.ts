@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import UnoCSS from 'unocss/vite'
+import vueJsx from '@vitejs/plugin-vue-jsx'
+import { viteMockServe } from 'vite-plugin-mock'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode, ssrBuild }) => {
@@ -10,6 +12,12 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
     plugins: [
       vue(),
       UnoCSS(),
+      vueJsx(),
+      viteMockServe({
+        mockPath: './mock',
+        localEnabled: true,
+        prodEnabled: false,
+      })
     ],
     resolve: {
       alias: {
@@ -24,7 +32,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
           target: 'https://app-cn.smileteeth.cn',
           changeOrigin: true,
           ws: true,
-          rewrite: (path) => path.replace(/^\/dev/, ''),
+          rewrite: (path) => path.replace(/^\/app/, ''),
         },
         '/dev': {
           target: 'https://dev.smileteeth.cn',

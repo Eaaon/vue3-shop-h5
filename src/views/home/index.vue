@@ -6,11 +6,13 @@ import addIcon from '@/assets/icons/cart_add.png'
 import { getInt, getDecimal } from '@/utils/format'
 import { useRouter } from 'vue-router';
 import Tabbar from '@/components/Tabbar/index.vue'
+import { bannerListApi } from '@/api/home'
 
 onMounted(() => {
   nextTick(() => {
     bs = new BScroll(bscroll.value, { scrollX: true })
   })
+  queryBannerList()
 })
 
 onBeforeUnmount(() => {
@@ -23,20 +25,7 @@ let bs = ref(null)
 
 const state = reactive({
   keywords: '',
-  bannerList: [
-    {
-      id: 200401,
-      linkUrl: "https://baidu.com",
-      picUrl: 'https://m11.360buyimg.com/babel/jfs/t1/238683/14/2822/304456/65a676d5F03d67e6b/33214ed93cd50467.png.webp',
-      title: "首页Banner1"
-    },
-    {
-      id: 200402,
-      linkUrl: "https://gitee.com/joeshu/v-shop",
-      picUrl: 'https://m.360buyimg.com/babel/jfs/t1/119823/7/42345/73537/65a7ca46Ffed71f8c/0730abe67949b5cc.png!q70.dpg',
-      title: "首页Banner2"
-    }
-  ],
+  bannerList: [],
   boxList: [
     {
       children: [
@@ -246,6 +235,13 @@ const onBox = (index: number) => {
   showToast('当前 Box 索引：' + index);
 }
 
+const queryBannerList = () => {
+  bannerListApi({}).then(data => {
+    console.log('data', data.data)
+    bannerList.value = data.data
+  })
+}
+
 const onLoad = () => {
   // state.productList = state.productList.concat(state.list)
   setTimeout(() => {
@@ -273,8 +269,10 @@ const { keywords, bannerList, boxList, productList, loading, finished, list } = 
   </van-sticky>
   <van-swipe :autoplay="3000" indicator-color="#fff" class="swiper-wrapper keep-px-swiper w-full" lazy-render
     @change="onSwipeChange">
-    <van-swipe-item v-for="item in bannerList" :key="item.id">
-      <van-image width="100%" height="100%" fit="cover" :src="item.picUrl" :alt="item.title" />
+    <van-swipe-item v-for="item in bannerList" :key="item.id" @click="">
+      <a :href="item.linkUrl">
+        <van-image width="100%" height="100%" fit="cover" :src="item.picUrl" :alt="item.title" />
+      </a>
     </van-swipe-item>
   </van-swipe>
   <div class="scroll-wrapper overflow-hidden whitespace-nowrap pb-2 bg-white" ref="bscroll">

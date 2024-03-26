@@ -4,6 +4,8 @@ import Tabbar from '@/components/Tabbar/index.vue'
 import avatar from '@/assets/images/avatar_default.png';
 import { useRouter } from 'vue-router';
 
+import { clinicApproveList, clinicApprove } from '@/api/oss'
+
 import icon_pending_payment from '@/assets/icons/pending_payment.png';
 import icon_logistics from '@/assets/icons/logistics.png';
 import icon_pending_comment from '@/assets/icons/pending_comment.png';
@@ -98,9 +100,36 @@ const toolList = ref<Recordable[]>([
 
 const { userInfo } = toRefs(state)
 
-const goPage = (path:string)=>{
+const goPage = (path: string) => {
   router.push({ path });
 }
+
+const onLoad = () => {
+  const params = {
+    page: 1,
+    size: 10,
+    keywords: ''
+  }
+  clinicApproveList(params).then(data => {
+    if (data) {
+      // if (data.content) {
+      //   state.list = state.list.concat(data.content);
+      // } else {
+      //   state.list = [];
+      // }
+      // state.page++
+      // state.finished = !data.hasNext
+      // state.isEmpty = !state.list || state.list.length === 0;
+    } else {
+      // state.error = true
+    }
+    // state.loading = false
+  })
+}
+
+onMounted(() => {
+  onLoad()
+})
 
 </script>
 
@@ -109,23 +138,23 @@ const goPage = (path:string)=>{
     <header class="flex items-center pl-5 pt-7 pb-3">
       <van-image width="50" height="50" round fit="cover" :src="userInfo.avatarUrl || avatar" alt="" />
       <div class="pl-3 pr-2 text-white">{{ userInfo.name }}</div>
-      <van-icon name="arrow" color="#fff" size="14"/>
+      <van-icon name="arrow" color="#fff" size="14" />
     </header>
-    <section class="flex m-3 py-3 bg-white rounded-xl">
+    <section class="flex m-3 py-3 bg-white rounded-md">
       <div v-for="(item, index) in countList" :key="index" class="w-1/3 text-center" @click="goPage(item.path)">
         <div>{{ item.value }}</div>
         <div class="text-xs pt-2 text-light-gray">{{ item.label }}</div>
       </div>
     </section>
-    <section class="flex m-3 py-3 bg-white rounded-xl">
+    <section class="flex m-3 py-3 bg-white rounded-md">
       <div v-for="(item, index) in orderList" :key="index" class="w-1/5 text-center" @click="goPage(item.path)">
         <van-icon size="24" :name="item.icon" :badge="item.count" />
         <div class="text-xs pt-1 text-gray">{{ item.label }}</div>
       </div>
     </section>
-    <section class="flex flex-wrap m-3 pb-4 bg-white rounded-xl">
+    <section class="flex flex-wrap m-3 pb-4 bg-white rounded-md">
       <div v-for="(item, index) in toolList" :key="index" class="w-1/4 text-center pt-4" @click="goPage(item.path)">
-        <van-icon size="24" :name="item.icon"/>
+        <van-icon size="24" :name="item.icon" />
         <div class="text-xs pt-1 text-gray">{{ item.title }}</div>
       </div>
     </section>
@@ -134,7 +163,7 @@ const goPage = (path:string)=>{
 </template>
 
 <style lang="scss" scoped>
-.container{
+.container {
   background: url('@/assets/images/login_bg.png') no-repeat;
   background-size: 100% 100%;
   width: 100%;

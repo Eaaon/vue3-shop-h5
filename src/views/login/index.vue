@@ -2,20 +2,20 @@
 import { computed, ref, unref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { showToast } from 'vant';
-import { loginProviderType } from '@/constants/modules/user';
-import { getClientInfo } from '@/utils';
+// import { loginProviderType } from '@/constants/modules/user';
+// import { getClientInfo } from '@/utils';
 import { isMobile } from '@/utils/validate';
 
-import { useUserStore } from '@/store/modules/user';
+// import { useUserStore } from '@/store/modules/user';
 
-const userStore = useUserStore();
+// const userStore = useUserStore();
 const route = useRoute();
 const router = useRouter();
 
 const loginType = ref('system');
-const loginProvider = computed(() => {
-  return loginProviderType[unref(loginType)] || {};
-});
+// const loginProvider = computed(() => {
+//   return loginProviderType[unref(loginType)] || {};
+// });
 const checkTypeText = computed(() => {
   return unref(loginType) === 'sms' ? '密码登录' : '验证码登录';
 });
@@ -50,8 +50,8 @@ function onSubmit() {
 
   const params: Recordable = {
     mobile: unref(mobile),
-    deviceId: getClientInfo().deviceId,
-    deviceName: getClientInfo().deviceType,
+    // deviceId: getClientInfo().deviceId,
+    // deviceName: getClientInfo().deviceType,
   };
 
   if (unref(loginType) === 'system') {
@@ -65,27 +65,27 @@ function onSubmit() {
 
   submitLoading.value = true;
 
-  userStore
-    .login({ provider: unref(loginType), params })
-    .then(() => {
-      submitLoading.value = false;
-      route.query.redirect ? router.replace({ path: route.query.redirect as string }) : router.replace({ path: '/' });
-      showToast({
-        type: 'success',
-        message: '登录成功',
-      });
-    })
-    .catch((err) => {
-      console.error(err);
-      submitLoading.value = false;
-    });
+  // userStore
+  //   .login({ provider: unref(loginType), params })
+  //   .then(() => {
+  //     submitLoading.value = false;
+  //     route.query.redirect ? router.replace({ path: route.query.redirect as string }) : router.replace({ path: '/' });
+  //     showToast({
+  //       type: 'success',
+  //       message: '登录成功',
+  //     });
+  //   })
+  //   .catch((err) => {
+  //     console.error(err);
+  //     submitLoading.value = false;
+  //   });
 }
 </script>
 
 <template>
   <div class="container">
     <div class="main">
-      <div class="h2">{{ loginProvider.h2 }}</div>
+      <!-- <div class="h2">{{ loginProvider.h2 }}</div> -->
       <div class="safe-tips">为了你的帐号安全，请用手机号登录</div>
       <form class="form">
         <div class="form-item">
