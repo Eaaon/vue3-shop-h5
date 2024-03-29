@@ -237,8 +237,8 @@ const onBox = (index: number) => {
 
 const queryBannerList = () => {
   bannerListApi({}).then(data => {
-    console.log('data', data.data)
-    bannerList.value = data.data
+    console.log('data',data)
+    bannerList.value = data.list
   })
 }
 

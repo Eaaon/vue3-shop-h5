@@ -123,10 +123,31 @@ export default defineConfig({
 })
 ```
 
+## 🔑 vite使用[mock](https://www.viterc.cn/en/vite-plugin-mock.html)
+## 🔭 第三方接口测试[Yapi](https://yapi.pro/)
+
 ## 💎 第三方组件
 ### 1、轮播（swiper）
 ### 2、滚动（@better-scroll/core）
 ### 3、瀑布流（masonry-layout、vue-masonry)
+
+## 🎃 不同环境配置
+### 1、测试环境 => .env.test
+### 2、开发环境 => .env.development
+### 3、生产环境 => .env.production
+
+```
+  // package.json
+  "scripts": {
+    "dev": "vite", //yarn dev 开发环境
+    "test": "vite --mode test", //yarn test 测试环境
+    "prod": "vite --mode production", //prod test 生产环境
+    "build": "vue-tsc && vite build", //yarn run build dev 生产环境构建产物
+    "build dev": "vite build --mode development", //yarn run build dev 开发环境构建产物
+    "build prod": "vite build --mode production", //yarn run build prod 生产环境构建产物
+    "preview": "vite preview" // 本地预览生产构建产物
+  },
+```
 
 ## 🎈 如需自己使用Vite创建项目
 ```
@@ -150,6 +171,8 @@ Done. Now run:
   npm install
   npm run dev
 ```
+
+## 😀 Emoji[路径](https://www.emojiall.com/zh-hans/categories/H)
 
 ## ⭐ 作者
 

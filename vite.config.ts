@@ -35,7 +35,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
           rewrite: (path) => path.replace(/^\/app/, ''),
         },
         '/dev': {
-          target: 'https://dev.smileteeth.cn',
+          target: 'https://yapi.pro/mock/313769',
           changeOrigin: true,
           ws: true,
           rewrite: (path) => path.replace(/^\/dev/, ''),

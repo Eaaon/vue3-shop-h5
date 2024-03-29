@@ -36,14 +36,14 @@ export const request = async (options: any) => {
           const res = response.data
           const status = response.status
           if (status !== 200) {
-            const desc = res.codeDesc || "出错了!"
+            const desc = res.code || "出错了!"
             showToast(desc)
-            return Promise.reject(new Error(res.codeDesc || 'Error'))
+            return Promise.reject(new Error(res.code || 'Error'))
           } else {
             if (res.code === "000000") {
               return res.data
             } else {
-              const desc = res.codeDesc || "出错了!"
+              const desc = res.code || "出错了!"
               showToast(desc)
             }
           }
